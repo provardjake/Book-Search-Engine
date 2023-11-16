@@ -47,7 +47,7 @@ const resolvers = {
             }
             throw AuthenticationError;
         },
-        deleteBook: async (parent, {bookData}, context)=>{
+        deleteBook: async (parent, {bookId}, context)=>{
             if(context.user){
                 const updatedUser = await User.findOneAndUpdate(
                     {_id: context.user._id},
@@ -62,3 +62,5 @@ const resolvers = {
         }
     }
 }
+
+module.exports = resolvers;
