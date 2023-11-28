@@ -12,10 +12,13 @@ import Auth from '../utils/auth';
 import { removeBookId } from '../utils/localStorage';
 
 const SavedBooks = () => {
+  // variable for querying the user
   const {loading, data} = useQuery(GET_ME);
 
+  // variable for remove book mutation
   const [removeBook, {error}] = useMutation(REMOVE_BOOK);
 
+  // variable for the users current saved books
   const userData = data?.me || {};
 
 
@@ -27,11 +30,13 @@ const SavedBooks = () => {
       return false;
     }
 
+    // Mutation for removing a saved book
     try {
       const {data} = await removeBook({
         variables: {bookId: bookId}
       });
 
+      //removes the book id from local storage
       removeBookId(bookId);
       window.location.reload();
     } 

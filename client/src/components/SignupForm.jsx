@@ -5,6 +5,7 @@ import {CREATE_USER} from "../utils/mutations";
 import Auth from '../utils/auth';
 
 const SignupForm = () => {
+  // variable for create user mutation
   const [createUser, {error, data}] = useMutation(CREATE_USER);
   
   // set initial form state
@@ -29,6 +30,7 @@ const SignupForm = () => {
       event.stopPropagation();
     }
 
+    // mutation for creating a new user with data from the form
     try {
       const {data} = await createUser({
         variables: {...userFormData}

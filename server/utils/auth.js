@@ -6,6 +6,7 @@ const secret = 'mysecretsshhhhh';
 const expiration = '2h';
 
 module.exports = {
+  // error for when a user can't be authenticated for a query or mutations
   AuthenticationError: new GraphQLError("Could not authenticate user.",{
     extensions: {
       code: "UNAUTHENTICATED"

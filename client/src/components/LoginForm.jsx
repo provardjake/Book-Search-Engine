@@ -6,10 +6,13 @@ import {LOGIN_USER} from "../utils/mutations";
 import Auth from '../utils/auth';
 
 const LoginForm = () => {
+  // user data from the login form
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   const [validated] = useState(false);
+  
   const [showAlert, setShowAlert] = useState(false);
 
+  // variable for login mutation
   const [login, {error}] = useMutation(LOGIN_USER);
 
   const handleInputChange = (event) => {
@@ -27,11 +30,13 @@ const LoginForm = () => {
       event.stopPropagation();
     }
 
+    // mutation for logging in user
     try {
       const {data} = await login({
         variables: {...userFormData}
       });
 
+      //checks users login token to see if it is valid
       Auth.login(data.login.token);
     } catch (err) {
       console.error(err);
